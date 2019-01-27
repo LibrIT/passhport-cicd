@@ -19,4 +19,4 @@ w3m
 smbclient
 foomatic-filters
 "
-apt-get purge -y ${PKGS_TO_UNINSTALL}
+DEBIAN_FRONTEND=noninteractive apt-get purge -y ${PKGS_TO_UNINSTALL}

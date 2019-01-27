@@ -56,19 +56,17 @@
 	},
 	{
 		"type": "shell",
-           	"execute_command": "echo '{{user `password`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
-		"inline": [
-			"wget https://raw.githubusercontent.com/librit/passhport/master/tools/passhport-install-script-debian-8-9.sh",
-			"bash passhport-install-script-debian-8-9.sh -s",
-			"rm passhport-install-script-debian-8-9.sh"
+		"execute_command": "echo '{{user `password`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+		"scripts": [
+			"scripts/update.sh",
+			"scripts/launch-passhport-installation.sh"
 		]
 	},
 	{
 		"type": "shell",
 		"execute_command": "echo '{{user `password`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
 		"scripts": [
-			"scripts/update.sh",
-			"scripts/packages.sh",
+			"scripts/packages-to-remove.sh",
 			"scripts/enable-tmpfs.sh",
 			"scripts/cleanup.sh"
 		]

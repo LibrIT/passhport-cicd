@@ -10,6 +10,13 @@ if [ -n "${WORKSPACE:+1}" ]; then
 	PATH=${WORKSPACE}/venv/bin:/usr/local/bin:$PATH
 	if [ ! -d "venv" ]; then
 		/usr/bin/env python3 -m venv "${JOB_BASE_NAME}"
+		echo "Activating virtualenv"
+		. "${JOB_BASE_NAME}/bin/activate"
+
+		echo "Upgrading pip"
+		pip install --upgrade pip
+		echo "Install Requirements"
+		pip install -r requirements.txt -r passhportd/app/tests/requirements.txt --cache-dir /tmp/$JOB_NAME
 	fi
 	echo "Activating virtualenv"
 	. "${JOB_BASE_NAME}/bin/activate"
@@ -18,11 +25,6 @@ else
 	echo "Error : problem with workspace"
 	exit 1
 fi
-echo "Upgrading pip"
-pip install --upgrade pip
-echo "Install Requirements"
-pip install -r requirements.txt -r passhportd/app/tests/requirements.txt --cache-dir /tmp/$JOB_NAME
-
 ########################
 # Step 2: Execute Test
 ########################

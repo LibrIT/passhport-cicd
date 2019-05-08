@@ -22,5 +22,4 @@ pip install -r requirements.txt -r passhportd/app/tests/requirements.txt --cache
 ########################
 # Step 2: Execute Test
 ########################
-cd ${WORKSPACE}/passhportd/
-nose2 -v --pretty-assert
+nosetests --with-xunit --all-modules --traverse-namespace --cover-package=me.maxwu --cover-inclusive --logging-level=INFO --debug=me.maxwu -s -v --xunit-file ci-stat_nose_xunit.xml --cover-html passhportd

@@ -22,4 +22,4 @@ pip install -r requirements.txt -r passhportd/app/tests/requirements.txt --cache
 ########################
 # Step 2: Execute Test
 ########################
-nose2 -v --pretty-assert ${WORKSPACE}/passhportd
+nose2 -v --pretty-assert ${WORKSPACE}/passhportd/app

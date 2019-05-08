@@ -11,13 +11,16 @@ if [ -n "${WORKSPACE:+1}" ]; then
 	if [ ! -d "venv" ]; then
 		/usr/bin/env python3 -m venv "${JOB_BASE_NAME}"
 	fi
+	echo "Activating virtualenv"
 	. "${JOB_BASE_NAME}/bin/activate"
 else
 	# Alternatively, $TRAVIS_REPO_SLUG could be utilized here to provide name.
 	echo "Error : problem with workspace"
 	exit 1
 fi
+echo "Upgrading pip"
 pip install --upgrade pip
+echo "Install Requirements"
 pip install -r requirements.txt -r passhportd/app/tests/requirements.txt --cache-dir /tmp/$JOB_NAME
 
 ########################

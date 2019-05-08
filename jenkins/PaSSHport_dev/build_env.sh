@@ -17,6 +17,7 @@ else
 	echo "Error : problem with workspace"
 	exit 1
 fi
+pip install --upgrade pip
 pip install -r requirements.txt -r passhportd/app/tests/requirements.txt --cache-dir /tmp/$JOB_NAME
 
 ########################
